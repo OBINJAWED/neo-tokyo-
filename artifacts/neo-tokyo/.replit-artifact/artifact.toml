@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "NEO TOKYO — After Dark"
+description = "A cinematic, interactive cyberpunk Tokyo environment that places the viewer inside a neon-lit city surrounded by recognizable Tokyo landmarks. Explore the city in 3D with atmospheric rain, luminous signage, and optional ambient sound."
+version = "1.0.0"
+id = "artifacts/neo-tokyo"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23538
+
+[services.development]
+run = "pnpm --filter @workspace/neo-tokyo run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/neo-tokyo", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/neo-tokyo/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23538"
+BASE_PATH = "/"

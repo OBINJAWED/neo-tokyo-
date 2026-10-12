@@ -1,0 +1,1 @@
+- [3D preview verification](3d-preview-verification.md) — The standard capture browser may lack WebGL; distinguish capture limitations from rendering failures.
